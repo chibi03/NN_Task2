@@ -42,12 +42,12 @@ def hessian(X, y):
 
 
 def update(weights, hessian, gradient):
-    return weights - np.linalg.inv(hessian) @ gradient
+    return weights - (np.linalg.inv(hessian) @ gradient)
 
 
 def log_likelihood(estimate, target):
     cls_1 = target
-    cls_2 = (1-cls_1)
+    cls_2 = (1-target)
     err_per_example = np.where(cls_1 != 0, cls_1 * np.log(estimate), 0)
     err_per_example = np.where(cls_2 != 0, err_per_example + cls_2 * np.log(1 - estimate), 0)
     return -np.sum(err_per_example, axis=0)
@@ -57,23 +57,36 @@ def irls(X, target):
     for features in range(2, X.shape[0]):
         bias = np.ones((X.shape[0], 1))
         input = np.append(bias, X[:, 0:features], axis=1)
-        weights = np.random.normal(0, 0.1, size=input.shape[1])[:, np.newaxis]
-        y = sigmoid(weights.reshape((1, -1)) @ input.T)
+        weights = np.random.uniform(low=0.0001, high=0.0002, size=input.shape[1])[:, np.newaxis]
+        y = sigmoid(weights.reshape((1, -1)) @ input.T)  # probability of clas 1
+
+        error_old = 100
+        error_new = 99
 
         iteration = 0
-        max_iterations = 5
+        max_iterations = 10
 
         print("--- Computing IRLS with ", features, " features.")
-        while iteration < max_iterations:
+        while (error_old - error_new) > 0.01:
+            error_old = error_new
+
             # update until error converges
             hess = hessian(input, y)
             gradient = nabla_e(input.T, y.reshape((-1, 1)), target)
             weights = update(weights, hess, gradient)
 
             y = sigmoid(weights.reshape((1, -1)) @ input.T)
-            error = log_likelihood(y.reshape((-1, 1)), np.where(C == 2, 0, 1))
-            print("iteration: ", iteration, "error:", error)
+            error_new = log_likelihood(y.reshape((-1, 1)), np.where(C == 2, 0, 1))
+            print("iteration: ", iteration, "error:", error_new)
             iteration += 1
+
+        probability = y
+        probability[probability > 0.5] = 0
+        probability[probability <= 0.5] = 1
+
+        comparison = np.equal(probability.reshape((-1, 1)), target)
+        accuracy = np.count_nonzero(comparison)/target.size
+        print("---Nr of features ", features, " accuracy", accuracy)
 
 
 irls(X, np.where(C == 2, 0, 1))
