@@ -57,11 +57,11 @@ def irls(X, target):
     for features in range(2, X.shape[0]):
         bias = np.ones((X.shape[0], 1))
         input = np.append(bias, X[:, 0:features], axis=1)
-        weights = np.random.normal(0, 2, size=input.shape[1])[:, np.newaxis]
+        weights = np.random.normal(0, 0.1, size=input.shape[1])[:, np.newaxis]
         y = sigmoid(weights.reshape((1, -1)) @ input.T)
 
         iteration = 0
-        max_iterations = 100
+        max_iterations = 5
 
         print("--- Computing IRLS with ", features, " features.")
         while iteration < max_iterations:
