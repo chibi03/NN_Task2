@@ -31,6 +31,27 @@ sigmoid = lambda a: np.where(a >= 0,
                              1 / (1 + np.exp(-a)),
                              np.exp(a) / (1 + np.exp(a)))
 
+plt.figure()
+plt.xticks(np.arange(0, 19, 1))
+plt.yticks(np.arange(0, 1.1, 0.1))
+plt.ylabel('accuracy')
+plt.xlabel('features')
+plt.title('IRLS accuracy vs number of features')
+plt.ylim([0, 1])
+
+
+def plot_point_values(x_y_array, ax, label):
+    for row in x_y_array:
+        valign = 'bottom'
+        offset_x = row[0]-0.05
+        offset = row[1]-0.02
+        if label == 'train':
+            valign = 'top'
+            offset_x = row[0]+0.05
+            offset = row[1]+0.02
+        ax.annotate('{:.0%}'.format(row[1]), xy=(row[0], row[1]), xytext=(offset_x, offset),
+                    ha='left', va=valign)
+
 
 def nabla_e(X, y, target):
     return X @ (y - target)
@@ -53,21 +74,19 @@ def log_likelihood(estimate, target):
     return -np.sum(err_per_example, axis=0)
 
 
-def irls(X, target):
-    for features in range(2, X.shape[0]):
+def irls(X, target, flag="train"):
+    result = np.zeros((X.shape[1]-2, 2), dtype=float)
+    for features in range(2, X.shape[1]):
         bias = np.ones((X.shape[0], 1))
         input = np.append(bias, X[:, 0:features], axis=1)
-        weights = np.random.uniform(low=0.0001, high=0.0002, size=input.shape[1])[:, np.newaxis]
-        y = sigmoid(weights.reshape((1, -1)) @ input.T)  # probability of clas 1
+        weights = np.random.uniform(low=-0.001, high=0.001, size=input.shape[1])[:, np.newaxis]
+        y = sigmoid(weights.reshape((1, -1)) @ input.T)  # probability of class 1
 
         error_old = 100
         error_new = 99
 
-        iteration = 0
-        max_iterations = 10
-
         print("--- Computing IRLS with ", features, " features.")
-        while (error_old - error_new) > 0.01:
+        while (error_old - error_new) > 0.1:
             error_old = error_new
 
             # update until error converges
@@ -76,17 +95,27 @@ def irls(X, target):
             weights = update(weights, hess, gradient)
 
             y = sigmoid(weights.reshape((1, -1)) @ input.T)
-            error_new = log_likelihood(y.reshape((-1, 1)), np.where(C == 2, 0, 1))
-            print("iteration: ", iteration, "error:", error_new)
-            iteration += 1
+            error_new = log_likelihood(y.reshape((-1, 1)), target)
+            print("error:", error_new)
 
-        probability = y
-        probability[probability > 0.5] = 0
-        probability[probability <= 0.5] = 1
-
+        probability = np.where(y > 0.5, 1, 0)
         comparison = np.equal(probability.reshape((-1, 1)), target)
         accuracy = np.count_nonzero(comparison)/target.size
-        print("---Nr of features ", features, " accuracy", accuracy)
+        print(flag, "---Nr of features ", features, " accuracy", accuracy)
+
+        # plot graph
+        result[features-2][0] = features
+        result[features-2][1] = accuracy
+
+    plt.plot(result[:, 0], result[:, 1], '+-', label=flag)
+    plot_point_values(result, plt.gca(), flag)
 
 
 irls(X, np.where(C == 2, 0, 1))
+irls(Xtst, np.where(Ctst == 2, 0, 1), 'test')
+
+ax = plt.gca()
+handles, labels = ax.get_legend_handles_labels()
+ax.legend(handles, labels)
+plt.show()
+

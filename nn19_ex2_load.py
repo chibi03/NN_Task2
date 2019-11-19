@@ -67,6 +67,7 @@ plt.xticks(np.arange(0, 19, 1))
 plt.yticks(np.arange(0, 1.1, 0.1))
 plt.ylabel('accuracy')
 plt.xlabel('features')
+plt.title('Probabilistic generative model accuracy vs number of features')
 plt.ylim([0, 1])
 
 
