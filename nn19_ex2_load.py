@@ -184,16 +184,29 @@ def irls_single(input, target):
     return accuracy, weights
 
 
-def irls(X, target, flag="train"):
-    result = np.zeros((X.shape[1]-2, 2), dtype=float)
+def classify_irls(weights, X, target):
+    y_tst = sigmoid(weights.reshape((1, -1)) @ X.T)
+    prediction = np.where(y_tst > 0.5, 1, 0)
+    comparison = np.equal(prediction.reshape((-1, 1)), target)
+    accuracy = np.count_nonzero(comparison)/target.size
+    print("tst accuracy", accuracy)
+    return accuracy
+
+
+def irls(X, target, Xtest, Ctest, flag="train"):
+    result = np.zeros((X.shape[1]-2, 3), dtype=float)
+    bias = np.ones((X.shape[0], 1))
+    bias_tst = np.ones((Xtest.shape[0], 1))
     for features in range(2, X.shape[1]):
-        bias = np.ones((X.shape[0], 1))
         input = np.append(bias, X[:, 0:features], axis=1)
+        input_tst = np.append(bias_tst, Xtest[:, 0:features], axis=1)
 
         print(flag, "---Nr of features ", features)
-        accuracy, _ = irls_single(input, target)
+        accuracy, weights = irls_single(input, target)
+        tst_accuracy = classify_irls(weights, input_tst, Ctest)
         result[features-2][0] = features
         result[features-2][1] = accuracy
+        result[features-2][2] = tst_accuracy
     return result
 
 
@@ -208,15 +221,13 @@ plt.xlabel('features')
 plt.title('IRLS accuracy vs number of features')
 plt.ylim([0, 1.1])
 
-result = irls(X, np.where(C == 2, 0, 1))
+result = irls(X, np.where(C == 2, 0, 1), Xtst, np.where(Ctst == 2, 0, 1))
 # plot graph
 plt.plot(result[:, 0], result[:, 1], '+-', label='train')
 plot_point_values(result, plt.gca(), 'train')
 
-result = irls(Xtst, np.where(Ctst == 2, 0, 1), 'test')
-# plot graph
-plt.plot(result[:, 0], result[:, 1], '+-', label='test')
-plot_point_values(result, plt.gca(), 'test')
+plt.plot(result[:, 0], result[:, 2], '+-', label='test')
+plot_point_values(np.delete(result, 1, 1), plt.gca(), 'test')  # delete second column containing the train accuracy
 
 
 ax = plt.gca()
@@ -233,10 +244,25 @@ plt.show()
 
 
 X_2_feat = X[:, :2]
+x_axis = X_2_feat[:, 0]
+y_axis = X_2_feat[:, 1]
+
+bias = np.ones((X_2_feat.shape[0], 1))
+input = np.append(bias, X_2_feat, axis=1)
+
+result, weights = irls_single(input, np.where(C == 2, 0, 1))
+
+x = - weights[0] / weights[1]
+y = - weights[0] / weights[2]
+k = - y / x
+
+line = k * x + y
+
 plt.figure()
 ax = plt.gca()
 colors = np.squeeze(C)
 scatter = plt.scatter(X_2_feat[:, 0], X_2_feat[:, 1], marker=(5, 1), c=colors)
+#plt.plot([0, x], [y, line], '-r')
 plt.xlabel('x1')
 plt.ylabel('x2')
 legend1 = ax.legend(*scatter.legend_elements(),
