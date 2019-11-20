@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="de446e9c-9856-44f1-b5bc-093be51ab358" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/nn19_ex2_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/nn19_ex2_load.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nn19_ex2_load_IRS.py" beforeDir="false" afterPath="$PROJECT_DIR$/nn19_ex2_load_IRS.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,15 +13,33 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/HW2$nn19_ex2_load_IRS.coverage" NAME="nn19_ex2_load_IRS Coverage Results" MODIFIED="1574207728133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HW2$nn19_ex2_load.coverage" NAME="nn19_ex2_load Coverage Results" MODIFIED="1574152793647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW2$nn19_ex2_load.coverage" NAME="nn19_ex2_load Coverage Results" MODIFIED="1574215041486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nn19_ex2_load.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="120" lean-forward="true" selection-start-line="120" selection-end-line="120" />
+            <state relative-caret-position="133">
+              <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.local/lib/python3.7/site-packages/numpy/linalg/linalg.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="159">
+              <caret line="96" selection-start-line="96" selection-end-line="96" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda3/lib/python3.7/site-packages/matplotlib/contour.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="1513" selection-start-line="1513" selection-end-line="1513" />
             </state>
           </provider>
         </entry>
@@ -66,11 +83,6 @@
               <item name="HW2" type="b2602c69:ProjectViewProjectNode" />
               <item name="HW2" type="462c0819:PsiDirectoryNode" />
               <item name="nn19_ex2_load.py" type="8704e2dd:PyFileNode" />
-            </path>
-            <path>
-              <item name="HW2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HW2" type="462c0819:PsiDirectoryNode" />
-              <item name="nn19_ex2_load_IRS.py" type="8704e2dd:PyFileNode" />
             </path>
             <path>
               <item name="HW2" type="b2602c69:ProjectViewProjectNode" />
@@ -131,6 +143,25 @@
               <item name="axes" type="462c0819:PsiDirectoryNode" />
               <item name="_base.py" type="8704e2dd:PyFileNode" />
               <item name="_AxesBase" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="HW2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.6 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="python3.7" type="462c0819:PsiDirectoryNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+              <item name="matplotlib" type="462c0819:PsiDirectoryNode" />
+              <item name="contour.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="HW2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.6 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="python3.7" type="462c0819:PsiDirectoryNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+              <item name="matplotlib" type="462c0819:PsiDirectoryNode" />
+              <item name="contour.py" type="8704e2dd:PyFileNode" />
+              <item name="QuadContourSet" type="dd8bbb05:PyElementNode" />
             </path>
             <path>
               <item name="HW2" type="b2602c69:ProjectViewProjectNode" />
@@ -202,6 +233,23 @@
               <item name="_base.py" type="8704e2dd:PyFileNode" />
               <item name="_AxesBase" type="dd8bbb05:PyElementNode" />
             </path>
+            <path>
+              <item name="HW2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.6 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+              <item name="matplotlib" type="462c0819:PsiDirectoryNode" />
+              <item name="contour.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="HW2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.6 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+              <item name="matplotlib" type="462c0819:PsiDirectoryNode" />
+              <item name="contour.py" type="8704e2dd:PyFileNode" />
+              <item name="QuadContourSet" type="dd8bbb05:PyElementNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -212,7 +260,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1574208097436" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1574215580251" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Bildverstehen/Repo/ImageUnderstandingTeam1" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -324,12 +372,12 @@
       <workItem from="1573814624835" duration="791000" />
       <workItem from="1573996541995" duration="16090000" />
       <workItem from="1574151256254" duration="11980000" />
-      <workItem from="1574184582315" duration="6707000" />
+      <workItem from="1574184582315" duration="14137000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52178000" />
+    <option name="totallyTimeSpent" value="59608000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="0" width="1924" height="1054" extended-state="6" />
@@ -357,7 +405,7 @@
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="bottom" id="ANTLR Preview" order="13" />
-      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="14" weight="0.32903227" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="14" weight="0.3286638" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -367,57 +415,75 @@
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info anchor="right" x="1246" y="151" width="618" height="302" id="SciView" order="9" sideWeight="0.48752835" visible="true" weight="0.27001068" />
-      <window_info anchor="right" x="0" y="0" width="431" height="882" id="Documentation" order="10" sideWeight="0.5124717" side_tool="true" weight="0.27001068" />
+      <window_info anchor="right" x="1246" y="151" width="618" height="302" id="SciView" order="9" sideWeight="0.4892857" visible="true" weight="0.27001068" />
+      <window_info anchor="right" x="0" y="0" width="431" height="882" id="Documentation" order="10" sideWeight="0.5107143" side_tool="true" weight="0.27001068" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nn19_ex2_load.py</url>
+          <line>178</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="debuggerHistoryManager">
+    <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>np.meshgrid(np.linspace(start=x_min, stop=x_max, num=X.shape[0]),np.linspace(start=y_min, stop=y_max, num=X.shape[0]))</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+    </expressions>
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>weights[:, 0:features]</expression-string>
+        <expression-string>np.repeat(Z, repeats=270, axis=0).T</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>np.where(Ctst == 2, 0, 1)</expression-string>
+        <expression-string>np.meshgrid(xx, yy)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>range(2, X.shape[1])</expression-string>
+        <expression-string>xx</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>X.shape[1]</expression-string>
+        <expression-string>np.repeat(Z, repeats=270, axis=0)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>X.shape[0]</expression-string>
+        <expression-string>np.repeat(Z, repeats=3, axis=0)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>probability.reshape((-1, 1))</expression-string>
+        <expression-string>np.random.randint(low=0, high=6, size=xx.shape)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>y &gt; 0.5</expression-string>
+        <expression-string>np.meshgrid(Z, Z)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>np.zeros(y.shape)</expression-string>
+        <expression-string>np.meshgrid(Z)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>weights.reshape((1, -1)) @ input.T</expression-string>
+        <expression-string>X</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -490,6 +556,13 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/nn19_ex2_load_IRS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-849">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/.local/lib/python3.7/site-packages/numpy/linalg/linalg.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
@@ -497,17 +570,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nn19_ex2_load_IRS.py">
+    <entry file="file://$USER_HOME$/anaconda3/lib/python3.7/site-packages/matplotlib/contour.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="187">
+          <caret line="1513" selection-start-line="1513" selection-end-line="1513" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nn19_ex2_load.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="120" lean-forward="true" selection-start-line="120" selection-end-line="120" />
+        <state relative-caret-position="133">
+          <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
         </state>
       </provider>
     </entry>

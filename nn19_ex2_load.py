@@ -77,7 +77,7 @@ def plot_point_values(x_y_array, ax, label):
             valign = 'top'
             offset_x = row[0]+0.05
             offset = row[1]+0.02
-        ax.annotate('{:.0%}'.format(row[1]), xy=(row[0], row[1]), xytext=(offset_x, offset),
+        ax.annotate('{:.2%}'.format(row[1]), xy=(row[0], row[1]), xytext=(offset_x, offset),
                     ha='left', va=valign)
 
 
@@ -92,20 +92,19 @@ def classify(X, mean, covariance, target, flag="train"):
                + ((1/2) * sub_m2.reshape((1, -1)) @ covinverse @ sub_m2) \
                + np.log(priors[2]/priors[4])
         input = X[:, 0:features]
-        probability = (sigmoid(weights[0:features].reshape((1, -1)) @ input.T + bias))
+        prediction = (sigmoid(weights[0:features].reshape((1, -1)) @ input.T + bias))
 
-        probability[probability > 0.5] = unique[0]
-        probability[probability <= 0.5] = unique[1]
+        prediction[prediction > 0.5] = unique[0]
+        prediction[prediction <= 0.5] = unique[1]
 
-        comparison = np.equal(probability.reshape((-1,1)), target)
+        comparison = np.equal(prediction.reshape((-1,1)), target)
         accuracy = np.count_nonzero(comparison)/target.size
         print(flag, "---Nr of features ", features, " accuracy", accuracy)
 
         result[features-2][0] = features
         result[features-2][1] = accuracy
 
-    plt.plot(result[:, 0], result[:, 1], '+-', label=flag)
-    plot_point_values(result, plt.gca(), flag)
+    return result
 
 
 ######
@@ -119,8 +118,13 @@ plt.xlabel('features')
 plt.title('Probabilistic generative model accuracy vs number of features')
 plt.ylim([0, 1])
 
-classify(X, mean, covariance, C)
-classify(Xtst, mean, covariance, Ctst, flag="test")
+result = classify(X, mean, covariance, C)
+plt.plot(result[:, 0], result[:, 1], '+-', label='train')
+plot_point_values(result, plt.gca(), 'train')
+
+result = classify(Xtst, mean, covariance, Ctst, flag="test")
+plt.plot(result[:, 0], result[:, 1], '+-', label='test')
+plot_point_values(result, plt.gca(), 'test')
 
 
 ax = plt.gca()
@@ -148,11 +152,36 @@ def update(weights, hessian, gradient):
 
 
 def log_likelihood(estimate, target):
-    cls_1 = target
-    cls_2 = (1-target)
-    err_per_example = np.where(cls_1 != 0, cls_1 * np.log(estimate), 0)
-    err_per_example = np.where(cls_2 != 0, err_per_example + cls_2 * np.log(1 - estimate), 0)
+    err_per_example = np.where(target != 0, target * np.log(estimate), 0)
+    err_per_example = np.where((1-target) != 0, err_per_example + (1-target) * np.log(1 - estimate), 0)
     return -np.sum(err_per_example, axis=0)
+
+
+def irls_single(input, target):
+    weights = np.random.uniform(low=-0.0001, high=0.0001, size=input.shape[1])[:, np.newaxis]
+    y = sigmoid(weights.reshape((1, -1)) @ input.T)  # probability of class 1
+
+    error_old = 100
+    error_new = 10
+
+    while np.abs(error_old - error_new) > 1:
+        error_old = error_new
+
+        # update until error converges
+        hess = hessian(input, y)
+        gradient = nabla_e(input.T, y.reshape((-1, 1)), target)
+        weights = update(weights, hess, gradient)
+
+        y = sigmoid(weights.reshape((1, -1)) @ input.T)
+        error_new = log_likelihood(y.reshape((-1, 1)), target)
+        print("error:", error_new)
+
+    prediction = np.where(y > 0.5, 1, 0)  # TODO recheck!! This doesn't make sense shouldn't it be classifying class 1, i.e. t = 0??
+    comparison = np.equal(prediction.reshape((-1, 1)), target)
+    accuracy = np.count_nonzero(comparison)/target.size
+    print("accuracy", accuracy)
+
+    return accuracy, weights
 
 
 def irls(X, target, flag="train"):
@@ -160,36 +189,12 @@ def irls(X, target, flag="train"):
     for features in range(2, X.shape[1]):
         bias = np.ones((X.shape[0], 1))
         input = np.append(bias, X[:, 0:features], axis=1)
-        weights = np.random.uniform(low=-0.0001, high=0.0001, size=input.shape[1])[:, np.newaxis]
-        y = sigmoid(weights.reshape((1, -1)) @ input.T)  # probability of class 1
 
-        error_old = 100
-        error_new = 0
-
-        print("--- Computing IRLS with ", features, " features.")
-        while (error_old - error_new) > 0.4:
-            error_old = error_new
-
-            # update until error converges
-            hess = hessian(input, y)
-            gradient = nabla_e(input.T, y.reshape((-1, 1)), target)
-            weights = update(weights, hess, gradient)
-
-            y = sigmoid(weights.reshape((1, -1)) @ input.T)
-            error_new = log_likelihood(y.reshape((-1, 1)), target)
-            print("error:", error_new)
-
-        probability = np.where(y > 0.5, 1, 0)
-        comparison = np.equal(probability.reshape((-1, 1)), target)
-        accuracy = np.count_nonzero(comparison)/target.size
-        print(flag, "---Nr of features ", features, " accuracy", accuracy)
-
+        print(flag, "---Nr of features ", features)
+        accuracy, _ = irls_single(input, target)
         result[features-2][0] = features
         result[features-2][1] = accuracy
-
-    # plot graph
-    plt.plot(result[:, 0], result[:, 1], '+-', label=flag)
-    plot_point_values(result, plt.gca(), flag)
+    return result
 
 
 ######
@@ -201,14 +206,43 @@ plt.yticks(np.arange(0, 1.1, 0.1))
 plt.ylabel('classification accuracy')
 plt.xlabel('features')
 plt.title('IRLS accuracy vs number of features')
-plt.ylim([0, 1])
+plt.ylim([0, 1.1])
 
-irls(X, np.where(C == 2, 0, 1))
-irls(Xtst, np.where(Ctst == 2, 0, 1), 'test')
+result = irls(X, np.where(C == 2, 0, 1))
+# plot graph
+plt.plot(result[:, 0], result[:, 1], '+-', label='train')
+plot_point_values(result, plt.gca(), 'train')
+
+result = irls(Xtst, np.where(Ctst == 2, 0, 1), 'test')
+# plot graph
+plt.plot(result[:, 0], result[:, 1], '+-', label='test')
+plot_point_values(result, plt.gca(), 'test')
+
 
 ax = plt.gca()
 handles, labels = ax.get_legend_handles_labels()
 ax.legend(handles, labels)
 plt.show()
 
+
+#########################################
+#
+# Decision boundary
+#
+#########################################
+
+
+X_2_feat = X[:, :2]
+plt.figure()
+ax = plt.gca()
+colors = np.squeeze(C)
+scatter = plt.scatter(X_2_feat[:, 0], X_2_feat[:, 1], marker=(5, 1), c=colors)
+plt.xlabel('x1')
+plt.ylabel('x2')
+legend1 = ax.legend(*scatter.legend_elements(),
+                    loc="upper left", title="Classes")
+ax.add_artist(legend1)
+plt.title('decision boundaries')
+
+plt.show()
 
