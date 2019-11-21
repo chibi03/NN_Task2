@@ -18,7 +18,7 @@ C = vehicle_data['train']['C']  # classes; C[i]...class of example i
 Xtst = vehicle_data['test']['X']  # features
 Ctst = vehicle_data['test']['C']  # classes
 
-# extract examples of class SAAb (2) and VAN (4)
+# extract examples of class SAAB (2) and VAN (4)
 indices = np.flatnonzero((C == 4) | (C == 2))
 C = C[indices]
 X = X[indices]
@@ -64,8 +64,9 @@ covariance = (examples_per_class[0]/nr_training_examples) * s[unique[0]] + \
              (examples_per_class[1]/nr_training_examples) * s[unique[1]]
 
 cov_inverse = np.linalg.pinv(covariance)
+
 # compute posterior probability
-sigmoid = lambda a: 1 / (1 + np.exp(-a))
+sigmoid = lambda a: np.where(a >= 0, 1 / (1 + np.exp(-a)), np.exp(a) / (1 + np.exp(a))) #numerically stable
 
 
 def plot_point_values(x_y_array, ax, label):
@@ -86,13 +87,13 @@ def classify(X, mean, covariance, target, flag="train"):
     for features in range(2, X.shape[1]+1):
         sub_m1 = mean[2][0:features]
         sub_m2 = mean[4][0:features]
-        covinverse = np.linalg.pinv(covariance[0:features, 0:features])
-        weights = covinverse @ (sub_m1-sub_m2)
+        covinverse = np.linalg.pinv(covariance[0:features, 0:features]) # Simga^-1
+        weights = covinverse @ (sub_m1-sub_m2) # w
         bias = (-(1/2) * sub_m1.reshape((1, -1)) @ covinverse @ sub_m1) \
                + ((1/2) * sub_m2.reshape((1, -1)) @ covinverse @ sub_m2) \
-               + np.log(priors[2]/priors[4])
+               + np.log(priors[2]/priors[4]) # w_0
         input = X[:, 0:features]
-        prediction = (sigmoid(weights[0:features].reshape((1, -1)) @ input.T + bias))
+        prediction = (sigmoid(weights[0:features].reshape((1, -1)) @ input.T + bias)) # p(C_1|x)
 
         prediction[prediction > 0.5] = unique[0]
         prediction[prediction <= 0.5] = unique[1]
@@ -113,9 +114,9 @@ def classify(X, mean, covariance, target, flag="train"):
 plt.figure()
 plt.xticks(np.arange(0, 19, 1))
 plt.yticks(np.arange(0, 1.1, 0.1))
-plt.ylabel('classification accuracy')
-plt.xlabel('features')
-plt.title('Probabilistic generative model accuracy vs number of features')
+plt.ylabel('Classification Accuracy')
+plt.xlabel('Features')
+plt.title('Probabilistic Generative Model Accuracy VS. Number of Features')
 plt.ylim([0, 1])
 
 result = classify(X, mean, covariance, C)
@@ -216,9 +217,9 @@ def irls(X, target, Xtest, Ctest, flag="train"):
 plt.figure()
 plt.xticks(np.arange(0, 19, 1))
 plt.yticks(np.arange(0, 1.1, 0.1))
-plt.ylabel('classification accuracy')
-plt.xlabel('features')
-plt.title('IRLS accuracy vs number of features')
+plt.ylabel('Classification Accuracy')
+plt.xlabel('Features')
+plt.title('IRLS Accuracy VS Number of Features')
 plt.ylim([0, 1.1])
 
 result = irls(X, np.where(C == 2, 0, 1), Xtst, np.where(Ctst == 2, 0, 1))
