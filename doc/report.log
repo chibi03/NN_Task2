@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  21 NOV 2019 17:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  23 NOV 2019 15:33
 entering extended mode
 **./report.tex
 (report.tex
@@ -610,24 +610,46 @@ Overfull \hbox (62.77794pt too wide) in paragraph at lines 262--263
 []| [] 
  []
 
-[3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 270.
- [4 <./pgm.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 270.
+[3] [4 <./pgm.png>]
+<irls.png, id=147, 1555.31062pt x 817.55438pt>
+File: irls.png Graphic file (type png)
+<use irls.png>
+Package pdftex.def Info: irls.png  used on input line 349.
+(pdftex.def)             Requested size: 544.36688pt x 286.14832pt.
+
+Overfull \hbox (60.67003pt too wide) in paragraph at lines 349--350
+[]| [] 
+ []
+
+[5 <./irls.png>]
+<irls_cee.png, id=172, 908.64468pt x 681.29532pt>
+File: irls_cee.png Graphic file (type png)
+<use irls_cee.png>
+Package pdftex.def Info: irls_cee.png  used on input line 376.
+(pdftex.def)             Requested size: 545.19102pt x 408.78035pt.
+
+Overfull \hbox (61.49417pt too wide) in paragraph at lines 376--377
+| [] 
+ []
+
+[6 <./irls_cee.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 389.
+ [7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 389.
  (report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 270.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 270.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 389.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 389.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 6242397BFA2338F317C9A612C98A9B2C;308.
  ) 
 Here is how much of TeX's memory you used:
- 8950 strings out of 492970
- 127941 string characters out of 3135854
- 543415 words of memory out of 3000000
- 12627 multiletter control sequences out of 15000+200000
+ 9015 strings out of 492970
+ 128786 string characters out of 3135854
+ 543427 words of memory out of 3000000
+ 12653 multiletter control sequences out of 15000+200000
  22834 words of font info for 47 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,7n,42p,861b,1914s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,8n,42p,861b,1914s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\intig\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
 tctt0900.pk>{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Progra
 m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/
@@ -640,9 +662,9 @@ t10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on report.pdf (6 pages, 220626 bytes).
+Output written on report.pdf (9 pages, 383335 bytes).
 PDF statistics:
- 194 PDF objects out of 1000 (max. 8388607)
- 78 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 254 PDF objects out of 1000 (max. 8388607)
+ 115 named destinations out of 1000 (max. 500000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 
