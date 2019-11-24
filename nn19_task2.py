@@ -1,4 +1,3 @@
-# by: Samirah Amadu & Inti Gabriel Mendoza Estrada
 # This example script shows how to load the data set in python
 # and how to extract the input samples and targets
 

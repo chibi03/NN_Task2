@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  23 NOV 2019 15:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.12)  24 NOV 2019 19:10
 entering extended mode
 **./report.tex
 (report.tex
@@ -643,10 +643,10 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 6242397BFA2338F317C9A612C98A9B2C;308.
  ) 
 Here is how much of TeX's memory you used:
- 9015 strings out of 492970
- 128786 string characters out of 3135854
+ 9016 strings out of 492970
+ 128804 string characters out of 3135854
  543427 words of memory out of 3000000
- 12653 multiletter control sequences out of 15000+200000
+ 12654 multiletter control sequences out of 15000+200000
  22834 words of font info for 47 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,8n,42p,861b,1914s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -662,7 +662,7 @@ t10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on report.pdf (9 pages, 383335 bytes).
+Output written on report.pdf (9 pages, 383949 bytes).
 PDF statistics:
  254 PDF objects out of 1000 (max. 8388607)
  115 named destinations out of 1000 (max. 500000)
